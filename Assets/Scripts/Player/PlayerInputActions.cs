@@ -30,7 +30,7 @@ namespace GameInput
             ""id"": ""4a9c88f3-dcc5-402b-8e2c-df7b9052e733"",
             ""actions"": [
                 {
-                    ""name"": ""MousePos"",
+                    ""name"": ""MousePosY"",
                     ""type"": ""PassThrough"",
                     ""id"": ""091dde48-4d67-4e33-909e-c5532690aadd"",
                     ""expectedControlType"": ""Vector2"",
@@ -47,7 +47,7 @@ namespace GameInput
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""MousePos"",
+                    ""action"": ""MousePosY"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -58,7 +58,7 @@ namespace GameInput
 }");
             // Player
             m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-            m_Player_MousePos = m_Player.FindAction("MousePos", throwIfNotFound: true);
+            m_Player_MousePosY = m_Player.FindAction("MousePosY", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -120,12 +120,12 @@ namespace GameInput
         // Player
         private readonly InputActionMap m_Player;
         private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
-        private readonly InputAction m_Player_MousePos;
+        private readonly InputAction m_Player_MousePosY;
         public struct PlayerActions
         {
             private @PlayerInputActions m_Wrapper;
             public PlayerActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
-            public InputAction @MousePos => m_Wrapper.m_Player_MousePos;
+            public InputAction @MousePosY => m_Wrapper.m_Player_MousePosY;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -135,16 +135,16 @@ namespace GameInput
             {
                 if (instance == null || m_Wrapper.m_PlayerActionsCallbackInterfaces.Contains(instance)) return;
                 m_Wrapper.m_PlayerActionsCallbackInterfaces.Add(instance);
-                @MousePos.started += instance.OnMousePos;
-                @MousePos.performed += instance.OnMousePos;
-                @MousePos.canceled += instance.OnMousePos;
+                @MousePosY.started += instance.OnMousePosY;
+                @MousePosY.performed += instance.OnMousePosY;
+                @MousePosY.canceled += instance.OnMousePosY;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
             {
-                @MousePos.started -= instance.OnMousePos;
-                @MousePos.performed -= instance.OnMousePos;
-                @MousePos.canceled -= instance.OnMousePos;
+                @MousePosY.started -= instance.OnMousePosY;
+                @MousePosY.performed -= instance.OnMousePosY;
+                @MousePosY.canceled -= instance.OnMousePosY;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -164,7 +164,7 @@ namespace GameInput
         public PlayerActions @Player => new PlayerActions(this);
         public interface IPlayerActions
         {
-            void OnMousePos(InputAction.CallbackContext context);
+            void OnMousePosY(InputAction.CallbackContext context);
         }
     }
 }

@@ -6,7 +6,7 @@
             "id": "4a9c88f3-dcc5-402b-8e2c-df7b9052e733",
             "actions": [
                 {
-                    "name": "MousePos",
+                    "name": "MousePosY",
                     "type": "PassThrough",
                     "id": "091dde48-4d67-4e33-909e-c5532690aadd",
                     "expectedControlType": "Vector2",
@@ -23,7 +23,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MousePos",
+                    "action": "MousePosY",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
