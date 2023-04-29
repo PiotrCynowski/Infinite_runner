@@ -1,17 +1,18 @@
 using UnityEngine;
 using PoolSpawner;
 using System.Collections;
+using Player;
 
-namespace SpawnedCollObj
+namespace SpawnedCollObjects
 {
     public class SpawnCollObjManager : MonoBehaviour
     {   
-        [SerializeField] private ObstacleObj[] obstaclesToSpawn;
+        [SerializeField] private SpawnedCollObj[] obstaclesToSpawn;
         [SerializeField] private float spawnInterval = 2.0f;
 
         [SerializeField] private int numberOfEquallySpacedSpawnPoints = 3;
 
-        private SpawnWithPool<ObstacleObj> obstacleSpawner;
+        private SpawnWithPool<SpawnedCollObj> obstacleSpawner;
         private System.Random rnd;
 
         private Vector3[] spawnerPositions;
@@ -22,7 +23,7 @@ namespace SpawnedCollObj
 
         private void Awake()
         {
-            obstacleSpawner = new SpawnWithPool<ObstacleObj>();
+            obstacleSpawner = new SpawnWithPool<SpawnedCollObj>();
             rnd = new System.Random();
 
             numberOfObstacleTypes = obstaclesToSpawn.Length;
@@ -32,6 +33,9 @@ namespace SpawnedCollObj
             }
 
             PrepareSpawnPoints();
+
+            PlayerInteractionCollision.OnGameEnd += OnGameEnd;
+            UIGameManager.OnGameRestart += OnGameRestart;
         }
 
 
@@ -82,6 +86,19 @@ namespace SpawnedCollObj
         private void OnDisable()
         {
             StopAllCoroutines();
+        }
+        #endregion
+
+
+        #region game end/restart
+        private void OnGameEnd()
+        {
+            StopAllCoroutines();
+        }
+
+        private void OnGameRestart()
+        {
+            StartCoroutine(SpawnObstacles());
         }
         #endregion
 

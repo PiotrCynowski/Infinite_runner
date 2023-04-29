@@ -10,6 +10,7 @@ namespace Player
         private float newYPos;
         private float screenTop, screenBottom;
 
+
         private void Start()
         {
             screenTop = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height- playerPosScreenEdge, 0)).y;

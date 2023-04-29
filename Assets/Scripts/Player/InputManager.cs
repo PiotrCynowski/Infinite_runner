@@ -30,11 +30,13 @@ namespace GameInput
         private void OnEnable()
         {
             controls.Enable();
+            Player.enabled = true;
         }
 
         private void OnDisable()
         {
             controls.Disable();
+            Player.enabled = false;
         }
         #endregion
 
@@ -43,11 +45,13 @@ namespace GameInput
         private void OnGameEnd()
         {
             controls.Disable();
+            Player.enabled = false;
         }
 
         private void OnGameRestart()
         {
             controls.Enable();
+            Player.enabled = true;
         }
         #endregion
     }

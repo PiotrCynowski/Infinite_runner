@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEditor;
-using SpawnedCollObj;
+using SpawnedCollObjects;
 
 #if UNITY_EDITOR
 [CustomEditor(typeof(SpawnCollObjManager))]

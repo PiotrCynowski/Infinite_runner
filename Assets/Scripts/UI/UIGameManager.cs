@@ -47,6 +47,7 @@ public class UIGameManager : MonoBehaviour
     #endregion
 
 
+    #region game end/restart
     private void OnGameEnd()
     {
         CurrentScore = 0;
@@ -58,4 +59,5 @@ public class UIGameManager : MonoBehaviour
         panelPause.SetActive(false);
         OnGameRestart?.Invoke();
     }
+    #endregion
 }

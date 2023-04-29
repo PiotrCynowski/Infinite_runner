@@ -2,13 +2,13 @@ using UnityEngine;
 using PoolSpawner;
 using System;
 
-namespace SpawnedCollObj
+namespace SpawnedCollObjects
 {
-    public class ObstacleObj : MonoBehaviour, IPoolable<ObstacleObj>
+    public class SpawnedCollObj : MonoBehaviour, IPoolable<SpawnedCollObj>
     {
         [SerializeField] private float movingSpeed;
 
-        private Action<ObstacleObj, int> onReturnToPool;
+        private Action<SpawnedCollObj, int> onReturnToPool;
         private bool isVisible;
         private int id;
 
@@ -20,7 +20,7 @@ namespace SpawnedCollObj
 
 
         #region pool
-        public void Initialize(Action<ObstacleObj, int> _returnAction, int _id)
+        public void Initialize(Action<SpawnedCollObj, int> _returnAction, int _id)
         {
             this.onReturnToPool = _returnAction;
             id = _id;
