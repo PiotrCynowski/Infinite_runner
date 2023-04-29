@@ -13,6 +13,12 @@ namespace SpawnedCollObj
         private int id;
 
 
+        void Update()
+        {
+            transform.Translate(Vector3.left * movingSpeed * Time.deltaTime);
+        }
+
+
         #region pool
         public void Initialize(Action<ObstacleObj, int> _returnAction, int _id)
         {
@@ -26,10 +32,6 @@ namespace SpawnedCollObj
         }
         #endregion
 
-        void Update()
-        {
-            transform.Translate(Vector3.left * movingSpeed * Time.deltaTime);
-        }
 
         #region visible/invisible
         private void OnBecameVisible()

@@ -1,29 +1,55 @@
 using UnityEngine;
+using Player;
 
 namespace Background
 {
     public class BackgroundScrollMain : MonoBehaviour
     {
-        [SerializeField] private BackgroundScrollParalaxElement[] elements;
-        public Transform positionYReference;
+       
+        [SerializeField] private BackgroundScrollParalaxElement[] backgroundElements;
+        [SerializeField] private Transform positionYReference;
+
+        private bool isBackgroundMoving;
         private int elementsSize;
         private float time, camYPos;
 
+        private void Awake()
+        {
+            PlayerInteractionCollision.OnGameEnd += OnGameEnd;
+            UIGameManager.OnGameRestart += OnGameRestart;
+        }
 
         private void Start()
         {
-            elementsSize = elements.Length;
+            elementsSize = backgroundElements.Length;
+            isBackgroundMoving = true;
         }
 
         private void Update()
         {
-            time = Time.deltaTime;
-            camYPos = positionYReference != null ? positionYReference.position.y : 0;
-
-            for (int i = 0; i < elementsSize; i++)
+            if (isBackgroundMoving)
             {
-                elements[i].PosParalaxUpdate(time, camYPos);
+                time = Time.deltaTime;
+                camYPos = positionYReference != null ? positionYReference.position.y : 0;
+
+                for (int i = 0; i < elementsSize; i++)
+                {
+                    backgroundElements[i].PosParalaxUpdate(time, camYPos);
+                }
             }
         }
+
+
+        #region game end/restart
+        private void OnGameEnd()
+        {
+            isBackgroundMoving = false;
+        }
+
+        private void OnGameRestart()
+        {
+            isBackgroundMoving = true;
+        }
+        #endregion
     }
 }

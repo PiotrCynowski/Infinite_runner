@@ -15,12 +15,16 @@ namespace GameInput
         {
             controls = new PlayerInputActions();
             controls.Player.MousePosY.performed += ctx => mouseInput = ctx.ReadValue<Vector2>();
+
+            PlayerInteractionCollision.OnGameEnd += OnGameEnd;
+            UIGameManager.OnGameRestart += OnGameRestart;
         }
 
         private void Update()
         {
             Player.ReceiveInput(mouseInput);
         }
+
 
         #region enable/disable
         private void OnEnable()
@@ -31,6 +35,19 @@ namespace GameInput
         private void OnDisable()
         {
             controls.Disable();
+        }
+        #endregion
+
+
+        #region game end/restart
+        private void OnGameEnd()
+        {
+            controls.Disable();
+        }
+
+        private void OnGameRestart()
+        {
+            controls.Enable();
         }
         #endregion
     }

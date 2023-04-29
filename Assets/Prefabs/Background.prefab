@@ -268,7 +268,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parallaxSpeedX: 15
-  parallaxSpeedY: 0.1
+  parallaxSpeedY: 0.2
 --- !u!1 &3816522705739397627
 GameObject:
   m_ObjectHideFlags: 0
@@ -453,7 +453,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parallaxSpeedX: 10
-  parallaxSpeedY: 0.2
+  parallaxSpeedY: 0.25
 --- !u!1 &3816522706152976792
 GameObject:
   m_ObjectHideFlags: 0
@@ -854,7 +854,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d089cc19e322a9f4788d1c85e04c53c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elements:
+  backgroundSpeed: 1
+  backgroundElements:
   - {fileID: 3816522705534253431}
   - {fileID: 3816522705757117804}
   - {fileID: 3816522706426167586}

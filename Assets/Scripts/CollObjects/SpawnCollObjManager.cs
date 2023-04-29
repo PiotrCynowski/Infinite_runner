@@ -5,8 +5,7 @@ using System.Collections;
 namespace SpawnedCollObj
 {
     public class SpawnCollObjManager : MonoBehaviour
-    {
-     
+    {   
         [SerializeField] private ObstacleObj[] obstaclesToSpawn;
         [SerializeField] private float spawnInterval = 2.0f;
 
@@ -34,6 +33,7 @@ namespace SpawnedCollObj
 
             PrepareSpawnPoints();
         }
+
 
         private void PrepareSpawnPoints()
         {
@@ -73,7 +73,6 @@ namespace SpawnedCollObj
         }
 
 
-
         #region enable/disable
         private void OnEnable()
         {
@@ -85,7 +84,6 @@ namespace SpawnedCollObj
             StopAllCoroutines();
         }
         #endregion
-
 
 
 #if UNITY_EDITOR
