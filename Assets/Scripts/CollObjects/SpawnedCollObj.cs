@@ -4,19 +4,11 @@ using System;
 
 namespace SpawnedCollObjects
 {
-    public class SpawnedCollObj : MonoBehaviour, IPoolable<SpawnedCollObj>
+    public abstract class SpawnedCollObj : MonoBehaviour, IPoolable<SpawnedCollObj>
     {
-        [SerializeField] private float movingSpeed;
-
         private Action<SpawnedCollObj, int> onReturnToPool;
         private bool isVisible;
         private int id;
-
-
-        void Update()
-        {
-            transform.Translate(Vector3.left * movingSpeed * Time.deltaTime);
-        }
 
 
         #region pool

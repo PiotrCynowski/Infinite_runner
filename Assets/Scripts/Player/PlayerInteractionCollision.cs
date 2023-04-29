@@ -9,11 +9,14 @@ namespace Player
 
         private void OnTriggerEnter(Collider _other)
         {
-            Debug.Log("trigger");
-
             OnGameEnd?.Invoke();
-
-
         }
     }
+}
+
+
+interface IAmPowerup
+{
+    int powerDuration { get; }
+    typeOfPowerup PowerUpType();
 }

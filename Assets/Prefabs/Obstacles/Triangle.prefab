@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1783687475449524080}
   - component: {fileID: 1442864231167242777}
-  - component: {fileID: 4249720687916081843}
   - component: {fileID: 4336592917662345946}
+  - component: {fileID: 211447939276463964}
   m_Layer: 7
   m_Name: Triangle
   m_TagString: Untagged
@@ -86,19 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4249720687916081843
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8616495290172067091}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d46ba5b033c41d47977b341bb840ab2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movingSpeed: 15
 --- !u!135 &4336592917662345946
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -112,3 +99,16 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0.21133333, z: 0}
+--- !u!114 &211447939276463964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8616495290172067091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6ad0bf2275f4bf4882fc1719d0f53aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movingSpeed: 15
