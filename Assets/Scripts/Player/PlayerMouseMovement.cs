@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace Player
@@ -10,6 +11,9 @@ namespace Player
         private float newYPos;
         private float screenTop, screenBottom;
 
+        [Header("PowerUp")]
+        private float movementBoostDuration;
+        private Coroutine movementBoost;
 
         private void Start()
         {
@@ -17,7 +21,7 @@ namespace Player
             screenBottom = Camera.main.ScreenToWorldPoint(new Vector3(0, playerPosScreenEdge, 0)).y;
         }
 
-        void Update()
+        private void Update()
         {
             Vector3 currentPos = transform.position;
             newYPos = Mathf.MoveTowards(currentPos.y, mousePos.y, movementSpeed * Time.deltaTime);
@@ -31,5 +35,45 @@ namespace Player
         {
             mousePos = Camera.main.ScreenToWorldPoint(_mousePos);
         }
+
+
+        #region PowerUp
+        private void EnablePowerup(int _addTimeToPuDuration)
+        {
+            movementBoostDuration += _addTimeToPuDuration;
+
+            if (movementBoost == null)
+            {
+                movementBoost = StartCoroutine(MovementBoostRoutine());
+            }
+        }
+
+        private IEnumerator MovementBoostRoutine()
+        {
+            movementSpeed *= 2;
+
+            while (movementBoostDuration > 0)
+            {
+                movementBoostDuration -= Time.deltaTime;
+                yield return null;
+            }
+
+            movementSpeed *= 0.5f;
+        }
+        #endregion
+
+
+        #region enable/disable
+        private void OnEnable()
+        {
+            PlayerInteractionCollision.OnSpeedUpPU += EnablePowerup;
+        }
+
+        private void OnDisable()
+        {
+            StopCoroutine(movementBoost);
+            PlayerInteractionCollision.OnSpeedUpPU -= EnablePowerup;
+        }
+        #endregion
     }
 }

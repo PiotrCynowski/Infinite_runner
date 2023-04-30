@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 namespace Player
@@ -7,12 +8,13 @@ namespace Player
     {
         public static event Action OnGameEnd;
 
-        public delegate void OnPowerupShield(int _puDuration);
-        public static event OnPowerupShield onShieldPU;
-
         public delegate void OnPowerupSpeedUp(int _puDuration);
-        public static event OnPowerupSpeedUp onSpeedUpPU;
+        public static event OnPowerupSpeedUp OnSpeedUpPU;
 
+        [Header("PowerUp")]
+        private bool isShield;
+        private float movementBoostDuration;
+        private Coroutine movementBoost;
 
         private void OnTriggerEnter(Collider _other)
         {
@@ -25,7 +27,8 @@ namespace Player
                 return;
             }
 
-            OnGameEnd?.Invoke();
+            if(!isShield)
+                OnGameEnd?.Invoke();
         }
 
 
@@ -34,15 +37,41 @@ namespace Player
             switch (_powerup.PowerUpType())
             {
                 case typeOfPowerup.Shield:
-                    onShieldPU?.Invoke(_powerup.powerDuration);
+                    EnableShieldPowerup(_powerup.powerDuration);
                     break;
                 case typeOfPowerup.SpeedUp:
-                    onSpeedUpPU?.Invoke(_powerup.powerDuration);
+                    OnSpeedUpPU?.Invoke(_powerup.powerDuration);
                     break;
                 default:
                     break;
             }
         }
+
+
+        #region PowerUp
+        private void EnableShieldPowerup(int _addTimeToPuDuration)
+        {
+            movementBoostDuration += _addTimeToPuDuration;
+
+            if (movementBoost == null)
+            {
+                movementBoost = StartCoroutine(MovementBoostRoutine());
+            }
+        }
+
+        private IEnumerator MovementBoostRoutine()
+        {
+            isShield = true;
+
+            while (movementBoostDuration > 0)
+            {
+                movementBoostDuration -= Time.deltaTime;
+                yield return null;
+            }
+
+            isShield = false;
+        }
+        #endregion
     }
 }
 

@@ -302,13 +302,17 @@ PrefabInstance:
       value: SpawnCollObjectsManager
       objectReference: {fileID: 0}
     - target: {fileID: 1367688269740291950, guid: 63e7612b079ed164da4d63f67359b987, type: 3}
-      propertyPath: powerupsToSpawn.Array.size
-      value: 1
+      propertyPath: spawnInterval
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1367688269740291950, guid: 63e7612b079ed164da4d63f67359b987, type: 3}
-      propertyPath: powerupsToSpawn.Array.data[0]
-      value: 
-      objectReference: {fileID: 260514792639732040, guid: 9fc69534e21166b4a955e3db7fc449e0, type: 3}
+      propertyPath: chanceOfPowerups
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1367688269740291950, guid: 63e7612b079ed164da4d63f67359b987, type: 3}
+      propertyPath: chanceOfPowerupSpawn
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 1367688269740291951, guid: 63e7612b079ed164da4d63f67359b987, type: 3}
       propertyPath: m_RootOrder
       value: 3
