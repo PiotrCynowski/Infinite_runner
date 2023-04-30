@@ -38,7 +38,7 @@ namespace Player
 
 
         #region PowerUp
-        private void EnablePowerup(int _addTimeToPuDuration)
+        private void ActivatePowerup(int _addTimeToPuDuration)
         {
             movementBoostDuration += _addTimeToPuDuration;
 
@@ -59,6 +59,7 @@ namespace Player
             }
 
             movementSpeed *= 0.5f;
+            movementBoost = null;
         }
         #endregion
 
@@ -66,13 +67,15 @@ namespace Player
         #region enable/disable
         private void OnEnable()
         {
-            PlayerInteractionCollision.OnSpeedUpPU += EnablePowerup;
+            PlayerInteractionCollision.OnSpeedUpPU += ActivatePowerup;
         }
 
         private void OnDisable()
         {
-            StopCoroutine(movementBoost);
-            PlayerInteractionCollision.OnSpeedUpPU -= EnablePowerup;
+            if(movementBoost !=null)
+                StopCoroutine(movementBoost);
+            
+            PlayerInteractionCollision.OnSpeedUpPU -= ActivatePowerup;
         }
         #endregion
     }

@@ -12,15 +12,14 @@ namespace Player
         public static event OnPowerupSpeedUp OnSpeedUpPU;
 
         [Header("PowerUp")]
+        [SerializeField] private GameObject shieldPU;
         private bool isShield;
         private float movementBoostDuration;
-        private Coroutine movementBoost;
+        private Coroutine shieldActive;
 
         private void OnTriggerEnter(Collider _other)
-        {
-            IAmPowerup powerup = _other.gameObject.GetComponent<IAmPowerup>();
-
-            if (powerup != null)
+        {       
+            if (_other.gameObject.TryGetComponent<IAmPowerup>(out var powerup))
             {
                 UsePowerUp(powerup);
                 powerup.PowerUpCollected();
@@ -36,11 +35,11 @@ namespace Player
         {
             switch (_powerup.PowerUpType())
             {
-                case typeOfPowerup.Shield:
-                    EnableShieldPowerup(_powerup.powerDuration);
+                case TypeOfPowerup.Shield:
+                    ActivateShieldPowerup(_powerup.PowerDuration);
                     break;
-                case typeOfPowerup.SpeedUp:
-                    OnSpeedUpPU?.Invoke(_powerup.powerDuration);
+                case TypeOfPowerup.SpeedUp:
+                    OnSpeedUpPU?.Invoke(_powerup.PowerDuration);
                     break;
                 default:
                     break;
@@ -49,19 +48,20 @@ namespace Player
 
 
         #region PowerUp
-        private void EnableShieldPowerup(int _addTimeToPuDuration)
+        private void ActivateShieldPowerup(int _addTimeToPuDuration)
         {
             movementBoostDuration += _addTimeToPuDuration;
 
-            if (movementBoost == null)
+            if (shieldActive == null)
             {
-                movementBoost = StartCoroutine(MovementBoostRoutine());
+                shieldActive = StartCoroutine(ShieldActive());
             }
         }
 
-        private IEnumerator MovementBoostRoutine()
+        private IEnumerator ShieldActive()
         {
             isShield = true;
+            shieldPU.SetActive(true);
 
             while (movementBoostDuration > 0)
             {
@@ -70,6 +70,8 @@ namespace Player
             }
 
             isShield = false;
+            shieldPU.SetActive(false);
+            shieldActive = null;
         }
         #endregion
     }
@@ -78,7 +80,7 @@ namespace Player
 
 interface IAmPowerup
 {
-    int powerDuration { get; }
-    typeOfPowerup PowerUpType();
+    int PowerDuration { get; }
+    TypeOfPowerup PowerUpType();
     void PowerUpCollected();
 }

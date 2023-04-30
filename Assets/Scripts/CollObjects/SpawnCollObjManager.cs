@@ -77,24 +77,24 @@ namespace SpawnedCollObjects
             {
                 if (rnd.Next(0, 100) < chanceOfPowerupSpawn)
                 {
-                    SpawnObj(typeOfCollObj.PowerUp);
+                    SpawnObj(TypeOfCollObj.PowerUp);
                     yield return new WaitForSeconds(spawnInterval);
                 }
 
-                SpawnObj(typeOfCollObj.Obstacle);
+                SpawnObj(TypeOfCollObj.Obstacle);
 
                 yield return new WaitForSeconds(spawnInterval);
             }
         }
 
-        private void SpawnObj(typeOfCollObj _obj)
+        private void SpawnObj(TypeOfCollObj _obj)
         {
             switch (_obj)
             {
-                case typeOfCollObj.Obstacle:
+                case TypeOfCollObj.Obstacle:
                     nxtObjSpawnId = rnd.Next(0, numberOfObstacleTypes);
                     break;
-                case typeOfCollObj.PowerUp:
+                case TypeOfCollObj.PowerUp:
                     nxtObjSpawnId = rnd.Next(numberOfObstacleTypes, numberOfPowerUpTypes + numberOfObstacleTypes);
                     break;
                 default:
@@ -148,5 +148,5 @@ namespace SpawnedCollObjects
 #endif
     }
 
-    public enum typeOfCollObj { Obstacle, PowerUp };
+    public enum TypeOfCollObj { Obstacle, PowerUp };
 }

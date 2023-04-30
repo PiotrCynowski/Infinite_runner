@@ -6,10 +6,15 @@ using System;
 public class UIGameManager : MonoBehaviour
 {
     [SerializeField] private Text scoreText;
+    [SerializeField] private Text scoreEndResultText;
+    [SerializeField] private Text scoreBestResultText;
+
     [SerializeField] private Button buttonRestart;
     [SerializeField] private GameObject panelPause;
 
     public static event Action OnGameRestart;
+
+    private int bestScore;
 
 
     private void Awake()
@@ -18,6 +23,8 @@ public class UIGameManager : MonoBehaviour
         PlayerScoreCalc.OnScoreAdd += OnScoreGaines;
 
         buttonRestart.onClick.AddListener(() => OnButtonRestartGame());
+
+        bestScore = PlayerPrefs.GetInt("BestScore");
     }
 
 
@@ -44,12 +51,24 @@ public class UIGameManager : MonoBehaviour
     {
         CurrentScore += _addScore;
     }
+
+    private void CheckBestScore()
+    {
+        if(currentScore > bestScore)
+        {
+            scoreBestResultText.text = "Best: " + currentScore.ToString();
+            PlayerPrefs.SetInt("BestScore", currentScore);
+        }
+    }
     #endregion
 
 
     #region game end/restart
     private void OnGameEnd()
     {
+        CheckBestScore();
+
+        scoreEndResultText.text = "Result: " + currentScore.ToString();
         CurrentScore = 0;
         panelPause.SetActive(true);
     }

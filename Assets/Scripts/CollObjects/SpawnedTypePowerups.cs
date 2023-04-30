@@ -4,16 +4,16 @@ namespace SpawnedCollObjects
 {
     public class SpawnedTypePowerups : SpawnedCollObj, IAmPowerup
     {
-        [SerializeField] private typeOfPowerup powerupType;
+        [SerializeField] private TypeOfPowerup powerupType;
 
         [SerializeField] private float movingSpeed = 5f;
         [SerializeField] private int powerDuration;
 
 
         #region powerup interface
-        int IAmPowerup.powerDuration => powerDuration;
+        int IAmPowerup.PowerDuration => powerDuration;
     
-        public typeOfPowerup PowerUpType()
+        public TypeOfPowerup PowerUpType()
         {
             return powerupType;
         }
@@ -27,10 +27,10 @@ namespace SpawnedCollObjects
 
         void Update()
         {
-            transform.Translate(Vector3.left * movingSpeed * Time.deltaTime);
+            transform.Translate(movingSpeed * Time.deltaTime * Vector3.left);
         }
     }
 }
 
 
-public enum typeOfPowerup { Shield, SpeedUp };
+public enum TypeOfPowerup { Shield, SpeedUp };
