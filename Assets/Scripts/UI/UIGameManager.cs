@@ -71,10 +71,14 @@ public class UIGameManager : MonoBehaviour
         scoreEndResultText.text = "Result: " + currentScore.ToString();
         CurrentScore = 0;
         panelPause.SetActive(true);
+
+        Time.timeScale = 0;
     }
 
     private void OnButtonRestartGame()
     {
+        Time.timeScale = 1;
+
         panelPause.SetActive(false);
         OnGameRestart?.Invoke();
     }

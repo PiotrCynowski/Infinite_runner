@@ -50,6 +50,7 @@ namespace Player
 
         private IEnumerator MovementBoostRoutine()
         {
+            AudioManager.Instance.PlaySound(TypeOfAudioClip.SpeedUpStart);
             movementSpeed *= 2;
 
             while (movementBoostDuration > 0)
@@ -59,6 +60,7 @@ namespace Player
             }
 
             movementSpeed *= 0.5f;
+            AudioManager.Instance.PlaySound(TypeOfAudioClip.SpeedUpStop);
             movementBoost = null;
         }
         #endregion

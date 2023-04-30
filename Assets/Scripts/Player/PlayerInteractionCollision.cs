@@ -18,7 +18,7 @@ namespace Player
         private Coroutine shieldActive;
 
         private void OnTriggerEnter(Collider _other)
-        {       
+        {
             if (_other.gameObject.TryGetComponent<IAmPowerup>(out var powerup))
             {
                 UsePowerUp(powerup);
@@ -26,8 +26,11 @@ namespace Player
                 return;
             }
 
-            if(!isShield)
+            if (!isShield)
+            {
+                AudioManager.Instance.PlaySound(TypeOfAudioClip.ObstacleCollision);
                 OnGameEnd?.Invoke();
+            }
         }
 
 
@@ -62,6 +65,7 @@ namespace Player
         {
             isShield = true;
             shieldPU.SetActive(true);
+            AudioManager.Instance.PlaySound(TypeOfAudioClip.ShieldStart);
 
             while (movementBoostDuration > 0)
             {
@@ -71,6 +75,7 @@ namespace Player
 
             isShield = false;
             shieldPU.SetActive(false);
+            AudioManager.Instance.PlaySound(TypeOfAudioClip.ShieldEnd);
             shieldActive = null;
         }
         #endregion
