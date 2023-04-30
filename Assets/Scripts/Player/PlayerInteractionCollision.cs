@@ -17,6 +17,7 @@ namespace Player
         private float movementBoostDuration;
         private Coroutine shieldActive;
 
+
         private void OnTriggerEnter(Collider _other)
         {
             if (_other.gameObject.TryGetComponent<IAmPowerup>(out var powerup))

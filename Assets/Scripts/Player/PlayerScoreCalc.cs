@@ -14,6 +14,7 @@ namespace Player
         {
             PlayerInteractionCollision.OnGameEnd += OnGameEnd;
             UIGameManager.OnGameRestart += OnGameRestart;
+            isPlayingGameplay = true;
         }
 
 
@@ -36,6 +37,7 @@ namespace Player
         }
         private void OnGameRestart()
         {
+            timeCalc = 0;
             isPlayingGameplay = true;
         }
         #endregion

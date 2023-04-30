@@ -45,8 +45,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstaclesToSpawn:
-  - {fileID: 211447939276463964, guid: e32b11554cf708142a97a1e37f4a6679, type: 3}
+  - {fileID: 8378485909297428903, guid: 12cd4195cc0753845b050444103e873d, type: 3}
+  - {fileID: 271164924230937138, guid: e32b11554cf708142a97a1e37f4a6679, type: 3}
   powerupsToSpawn:
-  - {fileID: 260514792639732040, guid: 9fc69534e21166b4a955e3db7fc449e0, type: 3}
-  spawnInterval: 2
-  numberOfEquallySpacedSpawnPoints: 3
+  - {fileID: 260514792639732040, guid: 9f000cec4e860d1428a8d15a09054428, type: 3}
+  - {fileID: 260514792639732040, guid: 992b3ea5f2585da43b23044c1dbfb268, type: 3}
+  - {fileID: 260514792639732040, guid: 9c204ca379b416943a61a50fcc33844b, type: 3}
+  - {fileID: 260514792639732040, guid: e3fba03bd70bac749aff5538d95e6f36, type: 3}
+  chanceOfPowerupSpawn: 20
+  spawnInterval: 1
+  numberOfEquallySpacedSpawnPoints: 8

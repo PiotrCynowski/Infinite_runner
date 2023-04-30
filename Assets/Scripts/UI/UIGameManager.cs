@@ -25,7 +25,7 @@ public class UIGameManager : MonoBehaviour
         buttonRestart.onClick.AddListener(() => OnButtonRestartGame());
 
         bestScore = PlayerPrefs.GetInt("BestScore");
-        scoreBestResultText.text = "BestScore: " + bestScore.ToString();
+        scoreBestResultText.text = "Best Score: " + bestScore.ToString();
     }
 
 
@@ -57,7 +57,7 @@ public class UIGameManager : MonoBehaviour
     {
         if(currentScore > bestScore)
         {
-            scoreBestResultText.text = "Best: " + currentScore.ToString();
+            scoreBestResultText.text = "Best Score: " + currentScore.ToString();
             PlayerPrefs.SetInt("BestScore", currentScore);
         }
     }

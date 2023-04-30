@@ -15,6 +15,7 @@ namespace Player
         private float movementBoostDuration;
         private Coroutine movementBoost;
 
+
         private void Start()
         {
             screenTop = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height- playerPosScreenEdge, 0)).y;
