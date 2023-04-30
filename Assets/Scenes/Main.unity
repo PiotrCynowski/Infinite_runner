@@ -123,17 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &289395062 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3816522706426167586, guid: e0148ec2f140dce47afe1a586c720dfe, type: 3}
-  m_PrefabInstance: {fileID: 3816522705783803078}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdd41d65dc52d3a45a763d713481344c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &439690960
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,17 +201,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &487651176 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3816522705534253431, guid: e0148ec2f140dce47afe1a586c720dfe, type: 3}
-  m_PrefabInstance: {fileID: 3816522705783803078}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdd41d65dc52d3a45a763d713481344c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,17 +285,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &774784266 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3816522705757117804, guid: e0148ec2f140dce47afe1a586c720dfe, type: 3}
-  m_PrefabInstance: {fileID: 3816522705783803078}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdd41d65dc52d3a45a763d713481344c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1577339035 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7877047450807984167, guid: e589550fb722fa4489f4a26175d613d2, type: 3}
@@ -332,12 +299,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1367688269740291945, guid: 63e7612b079ed164da4d63f67359b987, type: 3}
       propertyPath: m_Name
-      value: SpawnCollObjects
+      value: SpawnCollObjectsManager
       objectReference: {fileID: 0}
     - target: {fileID: 1367688269740291950, guid: 63e7612b079ed164da4d63f67359b987, type: 3}
-      propertyPath: numberOfSpawnPoints
-      value: 5
+      propertyPath: powerupsToSpawn.Array.size
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1367688269740291950, guid: 63e7612b079ed164da4d63f67359b987, type: 3}
+      propertyPath: powerupsToSpawn.Array.data[0]
+      value: 
+      objectReference: {fileID: 260514792639732040, guid: 9fc69534e21166b4a955e3db7fc449e0, type: 3}
     - target: {fileID: 1367688269740291951, guid: 63e7612b079ed164da4d63f67359b987, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -479,6 +450,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7988644998206690981, guid: de346fbae687a5547bf0350a72e221fb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de346fbae687a5547bf0350a72e221fb, type: 3}
 --- !u!1001 &3816522705783803078
@@ -488,42 +463,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3816522705534253431, guid: e0148ec2f140dce47afe1a586c720dfe, type: 3}
-      propertyPath: parallaxSpeedY
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3816522705757117804, guid: e0148ec2f140dce47afe1a586c720dfe, type: 3}
-      propertyPath: parallaxSpeedY
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 3816522706426167586, guid: e0148ec2f140dce47afe1a586c720dfe, type: 3}
-      propertyPath: parallaxSpeedY
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3816522707237740536, guid: e0148ec2f140dce47afe1a586c720dfe, type: 3}
-      propertyPath: backgroundSpeed
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3816522707237740536, guid: e0148ec2f140dce47afe1a586c720dfe, type: 3}
       propertyPath: positionYReference
       value: 
       objectReference: {fileID: 1577339035}
-    - target: {fileID: 3816522707237740536, guid: e0148ec2f140dce47afe1a586c720dfe, type: 3}
-      propertyPath: backgroundElements.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3816522707237740536, guid: e0148ec2f140dce47afe1a586c720dfe, type: 3}
-      propertyPath: backgroundElements.Array.data[0]
-      value: 
-      objectReference: {fileID: 487651176}
-    - target: {fileID: 3816522707237740536, guid: e0148ec2f140dce47afe1a586c720dfe, type: 3}
-      propertyPath: backgroundElements.Array.data[1]
-      value: 
-      objectReference: {fileID: 774784266}
-    - target: {fileID: 3816522707237740536, guid: e0148ec2f140dce47afe1a586c720dfe, type: 3}
-      propertyPath: backgroundElements.Array.data[2]
-      value: 
-      objectReference: {fileID: 289395062}
     - target: {fileID: 3816522707237740537, guid: e0148ec2f140dce47afe1a586c720dfe, type: 3}
       propertyPath: m_RootOrder
       value: 2

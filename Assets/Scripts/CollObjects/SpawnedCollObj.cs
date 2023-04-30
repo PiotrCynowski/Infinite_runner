@@ -14,13 +14,18 @@ namespace SpawnedCollObjects
         #region pool
         public void Initialize(Action<SpawnedCollObj, int> _returnAction, int _id)
         {
+            UIGameManager.OnGameRestart += ReturnToPool;
             this.onReturnToPool = _returnAction;
             id = _id;
         }
 
         public void ReturnToPool()
         {
-            throw new NotImplementedException();
+            if (isVisible)
+            {
+                isVisible = false;
+                onReturnToPool?.Invoke(this, id);
+            }
         }
         #endregion
 
@@ -32,11 +37,8 @@ namespace SpawnedCollObjects
         }
 
         private void OnBecameInvisible()
-        {
-            if (isVisible)
-            {
-                onReturnToPool?.Invoke(this, id);
-            }
+        {               
+            ReturnToPool();
         }
         #endregion
     }

@@ -8,37 +8,50 @@ namespace SpawnedCollObjects
     public class SpawnCollObjManager : MonoBehaviour
     {   
         [SerializeField] private SpawnedCollObj[] obstaclesToSpawn;
-        [SerializeField] private float spawnInterval = 2.0f;
+        [SerializeField] private SpawnedCollObj[] powerupsToSpawn;
 
+        [Range(0,100)]
+        [SerializeField] private float chanceOfPowerupSpawn;
+
+        [SerializeField] private float spawnInterval = 2.0f;
         [SerializeField] private int numberOfEquallySpacedSpawnPoints = 3;
 
-        private SpawnWithPool<SpawnedCollObj> obstacleSpawner;
+        private SpawnWithPool<SpawnedCollObj> objSpawner;
         private System.Random rnd;
 
         private Vector3[] spawnerPositions;
         private int numberOfObstacleTypes;
+        private int numberOfPowerUpTypes;
 
-        private int nxtObstacleSpawnId;
+        private int nxtObjSpawnId;
         private int nxtSpawnPos;
+
 
         private void Awake()
         {
-            obstacleSpawner = new SpawnWithPool<SpawnedCollObj>();
+            PrepareSpawnPoints();
+
+            objSpawner = new SpawnWithPool<SpawnedCollObj>();
             rnd = new System.Random();
 
             numberOfObstacleTypes = obstaclesToSpawn.Length;
             for (int i = 0; i < numberOfObstacleTypes; i++)
             {
-                obstacleSpawner.AddPoolForGameObject(obstaclesToSpawn[i].gameObject, i);
+                objSpawner.AddPoolForGameObject(obstaclesToSpawn[i].gameObject, i);
             }
 
-            PrepareSpawnPoints();
-
+            numberOfPowerUpTypes = powerupsToSpawn.Length;
+            for (int i = numberOfObstacleTypes; i < numberOfPowerUpTypes + numberOfObstacleTypes; i++)
+            {
+                objSpawner.AddPoolForGameObject(powerupsToSpawn[i - numberOfObstacleTypes].gameObject, i);
+            }
+         
             PlayerInteractionCollision.OnGameEnd += OnGameEnd;
             UIGameManager.OnGameRestart += OnGameRestart;
         }
 
 
+        #region spawning
         private void PrepareSpawnPoints()
         {
             spawnerPositions = null;
@@ -62,19 +75,36 @@ namespace SpawnedCollObjects
         {
             while (true)
             {
-                SpawnObstacle();
+                if (rnd.Next(0, 100) < chanceOfPowerupSpawn)
+                {
+                    SpawnObj(typeOfCollObj.PowerUp);
+                    yield return new WaitForSeconds(spawnInterval);
+                }
+
+                SpawnObj(typeOfCollObj.Obstacle);
 
                 yield return new WaitForSeconds(spawnInterval);
             }
         }
 
-        private void SpawnObstacle()
+        private void SpawnObj(typeOfCollObj _obj)
         {
-            nxtObstacleSpawnId = rnd.Next(0, numberOfObstacleTypes);
-            nxtSpawnPos = rnd.Next(0, numberOfEquallySpacedSpawnPoints);
+            switch (_obj)
+            {
+                case typeOfCollObj.Obstacle:
+                    nxtObjSpawnId = rnd.Next(0, numberOfObstacleTypes);
+                    break;
+                case typeOfCollObj.PowerUp:
+                    nxtObjSpawnId = rnd.Next(numberOfObstacleTypes, numberOfPowerUpTypes + numberOfObstacleTypes);
+                    break;
+                default:
+                    break;
+            }
 
-            obstacleSpawner.Spawn(spawnerPositions[nxtSpawnPos], nxtObstacleSpawnId);
+            nxtSpawnPos = rnd.Next(0, numberOfEquallySpacedSpawnPoints);
+            objSpawner.Spawn(spawnerPositions[nxtSpawnPos], nxtObjSpawnId);
         }
+        #endregion
 
 
         #region enable/disable
@@ -117,4 +147,6 @@ namespace SpawnedCollObjects
         }
 #endif
     }
+
+    public enum typeOfCollObj { Obstacle, PowerUp };
 }

@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstaclesToSpawn:
-  - {fileID: 4249720687916081843, guid: e32b11554cf708142a97a1e37f4a6679, type: 3}
+  - {fileID: 211447939276463964, guid: e32b11554cf708142a97a1e37f4a6679, type: 3}
+  powerupsToSpawn:
+  - {fileID: 260514792639732040, guid: 9fc69534e21166b4a955e3db7fc449e0, type: 3}
   spawnInterval: 2
-  numberOfSpawnPoints: 5
-  spawnerPositions: []
+  numberOfEquallySpacedSpawnPoints: 3

@@ -9,12 +9,21 @@ namespace SpawnedCollObjects
         [SerializeField] private float movingSpeed = 5f;
         [SerializeField] private int powerDuration;
 
-        int IAmPowerup.powerDuration => powerDuration;
 
+        #region powerup interface
+        int IAmPowerup.powerDuration => powerDuration;
+    
         public typeOfPowerup PowerUpType()
         {
             return powerupType;
         }
+      
+        public void PowerUpCollected()
+        {
+            ReturnToPool();
+        }
+        #endregion
+
 
         void Update()
         {
