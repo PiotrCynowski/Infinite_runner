@@ -14,7 +14,7 @@ public class UIGameManager : MonoBehaviour
 
     public static event Action OnGameRestart;
 
-    private int bestScore;
+    private int bestScore = 0;
 
 
     private void Awake()
@@ -25,6 +25,7 @@ public class UIGameManager : MonoBehaviour
         buttonRestart.onClick.AddListener(() => OnButtonRestartGame());
 
         bestScore = PlayerPrefs.GetInt("BestScore");
+        scoreBestResultText.text = "BestScore: " + bestScore.ToString();
     }
 
 

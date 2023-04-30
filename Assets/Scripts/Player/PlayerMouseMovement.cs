@@ -41,6 +41,7 @@ namespace Player
         private void ActivatePowerup(int _addTimeToPuDuration)
         {
             movementBoostDuration += _addTimeToPuDuration;
+            AudioManager.Instance.PlaySound(TypeOfAudioClip.SpeedUpStart);
 
             if (movementBoost == null)
             {
@@ -49,8 +50,7 @@ namespace Player
         }
 
         private IEnumerator MovementBoostRoutine()
-        {
-            AudioManager.Instance.PlaySound(TypeOfAudioClip.SpeedUpStart);
+        {         
             movementSpeed *= 2;
 
             while (movementBoostDuration > 0)

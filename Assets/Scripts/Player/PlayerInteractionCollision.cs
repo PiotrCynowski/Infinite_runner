@@ -26,6 +26,12 @@ namespace Player
                 return;
             }
 
+            if (isShield)
+            {
+                DeactivateShield();
+                return;
+            }
+
             if (!isShield)
             {
                 AudioManager.Instance.PlaySound(TypeOfAudioClip.ObstacleCollision);
@@ -54,6 +60,7 @@ namespace Player
         private void ActivateShieldPowerup(int _addTimeToPuDuration)
         {
             movementBoostDuration += _addTimeToPuDuration;
+            AudioManager.Instance.PlaySound(TypeOfAudioClip.ShieldStart);
 
             if (shieldActive == null)
             {
@@ -64,8 +71,7 @@ namespace Player
         private IEnumerator ShieldActive()
         {
             isShield = true;
-            shieldPU.SetActive(true);
-            AudioManager.Instance.PlaySound(TypeOfAudioClip.ShieldStart);
+            shieldPU.SetActive(true);      
 
             while (movementBoostDuration > 0)
             {
@@ -73,6 +79,12 @@ namespace Player
                 yield return null;
             }
 
+            DeactivateShield();
+        }
+
+        private void DeactivateShield()
+        {
+            StopCoroutine(shieldActive);
             isShield = false;
             shieldPU.SetActive(false);
             AudioManager.Instance.PlaySound(TypeOfAudioClip.ShieldEnd);
