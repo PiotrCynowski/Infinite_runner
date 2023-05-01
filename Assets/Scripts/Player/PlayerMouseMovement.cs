@@ -13,8 +13,9 @@ namespace Player
 
         private Vector3 dir;
         private float angle;
- 
+
         [Header("PowerUp")]
+        [SerializeField] private ParticleSystem particlesSpeedUpPU;
         private float movementBoostDuration;
         private Coroutine movementBoost;
 
@@ -54,6 +55,7 @@ namespace Player
         {
             movementBoostDuration += _addTimeToPuDuration;
             AudioManager.Instance.PlaySound(TypeOfAudioClip.SpeedUpStart);
+            particlesSpeedUpPU.Play();
 
             if (movementBoost == null)
             {
@@ -73,12 +75,14 @@ namespace Player
 
             StopMovementBoost();
             AudioManager.Instance.PlaySound(TypeOfAudioClip.SpeedUpStop);
+            
         }
 
         private void StopMovementBoost()
         {
             movementSpeed *= 0.5f;         
             movementBoost = null;
+            particlesSpeedUpPU.Stop();
         }
         #endregion
 
