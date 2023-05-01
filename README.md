@@ -12,6 +12,7 @@ To use the tools, the game must be running and the player with the Player Intera
 There are 5 prefabs in the main scene:
 #### - Player
 *with animated 3d model and player scripts*
+
 Player is controlled by mouse, his position is being adjusted to Y position of a mouse
 
 #### - Background
