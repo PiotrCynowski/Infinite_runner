@@ -267,7 +267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdd41d65dc52d3a45a763d713481344c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxSpeedX: 15
+  parallaxSpeedX: 12
   parallaxSpeedY: 0.2
 --- !u!1 &3816522705739397627
 GameObject:
@@ -452,7 +452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdd41d65dc52d3a45a763d713481344c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxSpeedX: 10
+  parallaxSpeedX: 8
   parallaxSpeedY: 0.25
 --- !u!1 &3816522706152976792
 GameObject:
@@ -721,7 +721,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdd41d65dc52d3a45a763d713481344c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxSpeedX: 5
+  parallaxSpeedX: 4
   parallaxSpeedY: 0.3
 --- !u!1 &3816522706955964400
 GameObject:
@@ -854,7 +854,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d089cc19e322a9f4788d1c85e04c53c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backgroundSpeed: 1
   backgroundElements:
   - {fileID: 3816522705534253431}
   - {fileID: 3816522705757117804}

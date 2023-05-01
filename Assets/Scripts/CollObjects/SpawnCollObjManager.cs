@@ -29,10 +29,20 @@ namespace SpawnedCollObjects
 
         private void Awake()
         {
+            PrepareSpawner();
             PrepareSpawnPoints();
-
-            objSpawner = new SpawnWithPool<SpawnedCollObj>();
+          
             rnd = new System.Random();
+              
+            PlayerInteractionCollision.OnGameEnd += OnGameEnd;
+            UIGameManager.OnGameRestart += OnGameRestart;
+        }
+
+
+        #region spawning
+        private void PrepareSpawner()
+        {
+            objSpawner = new SpawnWithPool<SpawnedCollObj>();
 
             numberOfObstacleTypes = obstaclesToSpawn.Length;
             for (int i = 0; i < numberOfObstacleTypes; i++)
@@ -45,13 +55,8 @@ namespace SpawnedCollObjects
             {
                 objSpawner.AddPoolForGameObject(powerupsToSpawn[i - numberOfObstacleTypes].gameObject, i);
             }
-         
-            PlayerInteractionCollision.OnGameEnd += OnGameEnd;
-            UIGameManager.OnGameRestart += OnGameRestart;
         }
 
-
-        #region spawning
         private void PrepareSpawnPoints()
         {
             spawnerPositions = null;
