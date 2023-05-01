@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace SpawnedCollObjects
 {
-    public class SpawnedTypeObstacles : SpawnedCollObj
+    public class SpawnedTypeObstacles : SpawnedCollObj, ICanBeDestroyedByShield
     {
         [SerializeField] private int movingSpeedMin = 3;
         [SerializeField] private int movingSpeedMax = 5;
@@ -14,7 +14,7 @@ namespace SpawnedCollObjects
 
         private System.Random rnd;
 
-
+       
         private void Awake()
         {
             rnd = new System.Random();
@@ -31,6 +31,12 @@ namespace SpawnedCollObjects
             transform.Translate(Vector3.left * decidedSpeed * Time.deltaTime, Space.World);
 
             transform.Rotate(rotatationVector, rotatationAngle, Space.World);
+        }
+
+
+        public void ObstacleDestroyed()
+        {
+            ReturnToPool();
         }
     }
 }

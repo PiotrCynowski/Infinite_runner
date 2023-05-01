@@ -13,6 +13,7 @@ namespace Player
 
         [Header("PowerUp")]
         [SerializeField] private GameObject shieldPU;
+        [SerializeField] private GameObject ExplosionCollision;
         private bool isShield;
         private float movementBoostDuration;
         private Coroutine shieldActive;
@@ -29,12 +30,19 @@ namespace Player
 
             if (isShield)
             {
+                if (_other.gameObject.TryGetComponent<ICanBeDestroyedByShield>(out var obstacle))
+                {
+                    obstacle.ObstacleDestroyed();
+                    PlayExlosionOnCollision(_other.transform.position);
+                }
+
                 DeactivateShield();
                 return;
             }
 
             if (!isShield)
             {
+                PlayExlosionOnCollision(_other.transform.position);
                 AudioManager.Instance.PlaySound(TypeOfAudioClip.ObstacleCollision);
                 OnGameEnd?.Invoke();
             }
@@ -54,6 +62,13 @@ namespace Player
                 default:
                     break;
             }
+        }
+
+
+        private void PlayExlosionOnCollision(Vector3 _position)
+        {
+            ExplosionCollision.transform.position = _position;
+            ExplosionCollision.SetActive(true);
         }
 
 
@@ -92,6 +107,29 @@ namespace Player
             shieldActive = null;
         }
         #endregion
+
+
+#if UNITY_EDITOR
+        public void EditorTestPowerup(TypeOfPowerup powerup)
+        {
+            switch (powerup)
+            {
+                case TypeOfPowerup.Shield:
+                    ActivateShieldPowerup(3);
+                    break;
+                case TypeOfPowerup.SpeedUp:
+                    OnSpeedUpPU?.Invoke(3);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public void EditorTestGameOver()
+        {
+            OnGameEnd?.Invoke();
+        }
+#endif
     }
 }
 
@@ -101,4 +139,9 @@ interface IAmPowerup
     int PowerDuration { get; }
     TypeOfPowerup PowerUpType();
     void PowerUpCollected();
+}
+
+interface ICanBeDestroyedByShield
+{
+    void ObstacleDestroyed();
 }
