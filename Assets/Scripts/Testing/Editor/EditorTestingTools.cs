@@ -11,12 +11,7 @@ public class EditorTestingTools : EditorWindow
     [MenuItem("Testing/UtilsTools")]
     public static void ShowGameDebugUtilsWindow()
     {
-        var window = EditorWindow.GetWindow<EditorTestingTools>();
-        var gameObject = GameObject.FindGameObjectWithTag("Player");
-        if(gameObject != null)
-        {
-            window.playerInteraction = gameObject.GetComponent<PlayerInteractionCollision>();
-        }    
+        EditorWindow.GetWindow<EditorTestingTools>();   
     }
 
     private void OnGUI()
@@ -32,6 +27,7 @@ public class EditorTestingTools : EditorWindow
 
             if (playerInteraction == null)
             {
+                playerInteraction = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInteractionCollision>();
                 EditorGUILayout.LabelField("Please add tag Player to playable plane");
             }
         }
