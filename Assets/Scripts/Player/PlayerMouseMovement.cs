@@ -8,9 +8,12 @@ namespace Player
         [SerializeField] private float movementSpeed = 5f;
         [SerializeField] private float playerPosScreenEdge = 15f;
         private Vector3 mousePos;
-        private float newYPos;
+        private float mouseYPos, newYPos;
         private float screenTop, screenBottom;
 
+        private Vector3 dir;
+        private float angle;
+ 
         [Header("PowerUp")]
         private float movementBoostDuration;
         private Coroutine movementBoost;
@@ -24,13 +27,21 @@ namespace Player
 
         private void Update()
         {
+            #region movement
             Vector3 currentPos = transform.position;
-            newYPos = Mathf.MoveTowards(currentPos.y, mousePos.y, movementSpeed * Time.deltaTime);
+            mouseYPos = Mathf.Clamp(mousePos.y, screenBottom, screenTop);
+            newYPos = Mathf.MoveTowards(currentPos.y, mouseYPos, movementSpeed * Time.deltaTime);
 
-            newYPos = Mathf.Clamp(newYPos, screenBottom, screenTop);
             transform.position = new Vector3(currentPos.x, newYPos, currentPos.z);
+            #endregion
+
+            #region rotation
+            dir = new Vector3(0, mouseYPos, currentPos.z) - transform.position;
+            angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            #endregion
         }
-     
+
 
         public void ReceiveInput(Vector2 _mousePos)
         {
@@ -60,8 +71,13 @@ namespace Player
                 yield return null;
             }
 
-            movementSpeed *= 0.5f;
+            StopMovementBoost();
             AudioManager.Instance.PlaySound(TypeOfAudioClip.SpeedUpStop);
+        }
+
+        private void StopMovementBoost()
+        {
+            movementSpeed *= 0.5f;         
             movementBoost = null;
         }
         #endregion
@@ -75,9 +91,13 @@ namespace Player
 
         private void OnDisable()
         {
-            if(movementBoost !=null)
+            if (movementBoost != null)
+            {
                 StopCoroutine(movementBoost);
-            
+                StopMovementBoost();
+            }
+
+
             PlayerInteractionCollision.OnSpeedUpPU -= ActivatePowerup;
         }
         #endregion
