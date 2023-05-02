@@ -9715,7 +9715,7 @@ Transform:
   - {fileID: 4478115312325890992}
   m_Father: {fileID: 4177347799948901853}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -84.80292, y: -179.99985, z: 89.99985}
 --- !u!1 &966371622054336890
 GameObject:
   m_ObjectHideFlags: 0
@@ -14589,7 +14589,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 1db8a1f4874372147b9fecab28b4e45a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14672,7 +14672,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 1db8a1f4874372147b9fecab28b4e45a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14774,9 +14774,9 @@ Animation:
   m_GameObject: {fileID: 7877047450807984165}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 4e924ac82d12d7245b0ce44e7330fc7e, type: 2}
+  m_Animation: {fileID: 7400000, guid: ce9553f80a1b0464aa59d75d16b610f6, type: 2}
   m_Animations:
-  - {fileID: 7400000, guid: 4e924ac82d12d7245b0ce44e7330fc7e, type: 2}
+  - {fileID: 7400000, guid: ce9553f80a1b0464aa59d75d16b610f6, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
@@ -14866,7 +14866,7 @@ Transform:
   - {fileID: 1069262727623256744}
   m_Father: {fileID: 7877047450807984167}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 89.98021, y: 0, z: 0}
 --- !u!1 &8707636785827346968
 GameObject:
   m_ObjectHideFlags: 0
@@ -14899,7 +14899,7 @@ Transform:
   - {fileID: 7995243806438421425}
   m_Father: {fileID: 1069262727623256744}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -85.26707, z: 0}
 --- !u!1 &8919184638335128703
 GameObject:
   m_ObjectHideFlags: 0
