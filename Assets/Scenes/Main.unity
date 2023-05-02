@@ -452,50 +452,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 148642001643322418, guid: e589550fb722fa4489f4a26175d613d2, type: 3}
-      propertyPath: m_Animation
-      value: 
-      objectReference: {fileID: 7400000, guid: ce9553f80a1b0464aa59d75d16b610f6, type: 2}
-    - target: {fileID: 148642001643322418, guid: e589550fb722fa4489f4a26175d613d2, type: 3}
-      propertyPath: m_Animations.Array.data[0]
-      value: 
-      objectReference: {fileID: 7400000, guid: ce9553f80a1b0464aa59d75d16b610f6, type: 2}
-    - target: {fileID: 1069262727623256744, guid: e589550fb722fa4489f4a26175d613d2, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -84.80292
-      objectReference: {fileID: 0}
-    - target: {fileID: 1069262727623256744, guid: e589550fb722fa4489f4a26175d613d2, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -179.99985
-      objectReference: {fileID: 0}
-    - target: {fileID: 1069262727623256744, guid: e589550fb722fa4489f4a26175d613d2, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 89.99985
-      objectReference: {fileID: 0}
-    - target: {fileID: 4177347799948901853, guid: e589550fb722fa4489f4a26175d613d2, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 89.98021
-      objectReference: {fileID: 0}
-    - target: {fileID: 4283842896473442980, guid: e589550fb722fa4489f4a26175d613d2, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 1db8a1f4874372147b9fecab28b4e45a, type: 2}
-    - target: {fileID: 4478115312325890992, guid: e589550fb722fa4489f4a26175d613d2, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4478115312325890992, guid: e589550fb722fa4489f4a26175d613d2, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -85.26707
-      objectReference: {fileID: 0}
-    - target: {fileID: 4478115312325890992, guid: e589550fb722fa4489f4a26175d613d2, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6224935283603111724, guid: e589550fb722fa4489f4a26175d613d2, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 1db8a1f4874372147b9fecab28b4e45a, type: 2}
     - target: {fileID: 7877047450807984165, guid: e589550fb722fa4489f4a26175d613d2, type: 3}
       propertyPath: m_Name
       value: Player
